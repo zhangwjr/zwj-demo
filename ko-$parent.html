@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>$parent</title>
+</head>
+<body>
+<script src="http://yc.yonyou.com/cpu-cdn/js/knockout/knockout-3.4.0.min.js"></script>
+<div>
+    <ul data-bind="foreach:data">
+        <li>
+            <p data-bind="text:name"></p>
+            <ul data-bind="foreach:contains">
+                <li>
+                    <p><span data-bind="text:name"></span>属于<span data-bind="text:$parent.name"></span></p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script>
+    var vm = {
+        data : [
+            {   
+                name:"水果",
+                contains:[
+                    {   
+                        name:"苹果",
+                        work:"苹果的作用"
+                    },{
+                        name:"香蕉",
+                        work:"香蕉的作用"
+                    }
+                ]
+            },{
+                name:"蔬菜",
+                contains:[
+                    {   
+                        name:"青菜",
+                        work:"青菜的作用"
+                    },{
+                        name:"白菜",
+                        word:"白菜的作用"
+                    }
+                ]
+            }
+        ]
+    };
+    ko.applyBindings(vm)
+</script>
+</body>
+</html>

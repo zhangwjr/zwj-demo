@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reduce</title>
+</head>
+<body>
+<script>
+
+	var arr = [
+	    {'price':22.2,'num':12},
+	    {'price':12,'num':13},
+	    {'price':4.2,'num':14}
+	]
+	var all = arr.reduce(function(a,b){
+	    var w = a + b.price*b.num
+	    return w
+	},0)
+
+	console.log(all)
+	document.write(all)
+</script>
+</body>
+</html>

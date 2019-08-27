@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>回调函数</title>
+</head>
+<body>
+<div>
+    <p>回调函数</p>
+</div>
+<script>
+    function add(getX,getY,cb){
+        var x,y;
+        getX(function(xVal){
+            x = xVal;
+            //两个都准备好了吗
+            if(y != undefined){
+                cb( x + y )
+            }
+
+        });
+        getY(function(yVal){
+            y = yVal;
+            //两个都准备好了吗
+            if(x != undefined){
+                cb( x + y )
+            }
+        });
+
+    }
+
+</script>
+</body>
+</html>

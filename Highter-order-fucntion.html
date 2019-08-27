@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高阶函数</title>
+</head>
+<body>
+<div>
+    <h2>高阶函数是一个可以接受函数作为参数传递或者将函数作为返回值输出的函数</h2>
+</div>
+<script>
+	//引用类型的示例
+	function changeObjProperty(o){
+		o.name = 'aaa'
+		o = new Object()
+		o.name = 'bbb'
+		return  o
+	}
+	// let obj = new Object()
+	// changeObjProperty(obj)
+	// console.log(obj)
+
+	// let newObj = changeObjProperty(obj)
+	// console.log(newObj)
+
+	//因为website是引用类型，o只是对website的引用，改变引用类型的属性可以，但如果o重新赋值相当于重新开辟一块地址，不影响外面的对象（website还是指向原来的地址）
+
+	function toAdd(num1,num2){
+		arguments[1] = 10
+		console.log(arguments[0])
+	}
+	toAdd(10,20)
+</script>
+</body>
+</html>

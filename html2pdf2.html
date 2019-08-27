@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jsPDF Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://code.jquery.com/jquery-git.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+</head>
+<body>
+    <p class="pdf-wrapper" ="to-pdf">
+        <table width="400" border="1">
+            <col align="left"/>
+            <col align="left"/>
+            <col align="left" />
+            <thead>
+                <tr>
+                    <th>表头1</th>
+                    <th>表头2</th>
+                    <th>表头3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>内容1</td>
+                    <td>内容2</td>
+                    <td>内容3</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>脚注1</td>
+                    <td>脚注2</td>
+                    <td>脚注2</td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </p>
+ 
+    <script type="text/javascript">
+        var pdf = new jsPDF('p','pt','a4');
+        pdf.internal.scaleFactor = 1;
+        var options = {
+             pagesplit: true
+        };
+ 
+        pdf.addHTML(document.body,options,function() {
+            pdf.save('web.pdf');
+        });
+    </script>
+</body>
+ 
+ 
+</html>

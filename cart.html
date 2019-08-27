@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+<link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+	<div class="container">
+		<div class="row">
+			<table class="table table-bordered table-hover">
+				<caption class="h2 text-center text-warning">云采购物车</caption>
+		    	<tr>
+		    		<th>全选<input type="checkbox" v-model="checkAll"></th>
+		    		<th>商品</th>
+		    		<th>单价</th>
+		    		<th>数量</th>
+		    		<th>小计</th>
+		    		<th>操作</th>
+		    	</tr>
+		    	<tr v-for="(produce,index) in products">
+		    		<td><input type="checkbox"></td>
+		    		<td>{{produce.productInfo}}</td>
+		    		<td>{{produce.productPrice}}</td>
+		    		<td>{{produce.productCount}}</td>
+		    		<td>{{produce.productCount*produce.productPrice}}</td>
+		    		<td><button class="btn btn-danger">删除</button></td>
+		    	</tr>
+		    </table>
+		</div>
+	</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+        	checkAll:0,
+            products:[
+            	{
+					"isSelected": true,
+					"productCover": "https://img10.360buyimg.com/cms/s80x80_jfs/t3172/131/15172325/113715/5466ecfe/57a0186eN90f75215.jpg",
+					"productName": "深入浅出的node.js",
+					"productInfo": "颜色：Node.js",
+					"productPrice": 57.909,
+					"productCount": 3
+				},{
+					"isSelected": true,
+					"productCover": "https://img10.360buyimg.com/cms/s80x80_jfs/t21844/147/1811228420/301473/5d7d9a15/5b3991f1N30be96c1.jpg",
+					"productName": "按摩椅",
+					"productInfo": "颜色：蓝色",
+					"productPrice": 100.999,
+					"productCount": 3
+				}
+			],
+        },
+        beforeMount(){
+        	//this.getData()
+        },
+        methods:{
+            /*getData(){
+            	axios.get('./carts.json').then(function(res){
+            		this.products = res.data
+            	},function(err){
+            		console.log(err)
+            	})
+            }*/
+        }
+        
+    })
+
+</script>
+</body>
+</html>

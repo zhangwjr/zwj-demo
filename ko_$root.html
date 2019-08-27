@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>$root</title>
+</head>
+<body>
+<script src="http://yc.yonyou.com/cpu-cdn/js/knockout/knockout-3.4.0.min.js"></script>
+<div>
+    <ul data-bind="foreach:list">
+        <li>
+            <input type="checkbox" data-bind="checkedValue:$data,checked:$root.selectedlist">
+            <span data-bind="text:$data.name"></span>
+            <span data-bind="text:$data.age"></span>
+        </li>
+    </ul>
+    <h1 data-bind="text:$root.name"></h1>
+    <div data-bind="with:$root.manager">
+        <span data-bind="text:name"></span>
+        <br>
+        <span data-bind="text:age"></span>
+    </div>
+</div>
+<script>
+    var vm = {
+        list : ko.observableArray([
+            {name:"水果",age:'18'},
+            {name:"蔬菜",age:'19'},
+            {name:"香蕉",age:'17'},
+            {name:"蔬菜",age:'16'}
+        ]),
+        selectedlist:ko.observableArray(),
+        name:'这是一个名字',
+        manager:{
+            name:'你好',
+            age:18
+        }
+
+    };
+
+    ko.applyBindings(vm)
+</script>
+</body>
+</html>

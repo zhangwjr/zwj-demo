@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>functional programming</title>
+</head>
+<body>
+<div>
+    <p style="color:red;">函数式编程</p>
+</div>
+<script>
+    var getServerStuff = function(callback){
+        return ajaxCall(callback);
+    }
+
+    const goodList = [
+        {
+            caName: '1111',
+            name: 'type1'
+        },{
+            caName: '1111',
+            name: 'type2'
+        },{
+            caName: '222',
+            name: 'type1'
+        },{
+            caName: '222',
+            name: 'type2'
+        }
+    ]
+    let result = {}
+    goodList.forEach(item => {
+        result[item.caName] = result[item.caName] ? [...result[item.caName],item] : [item]
+    })
+    console.log('result',result)
+
+    function fn(num) {
+        if(num <= 1){
+            return 1
+        }else{
+            return num * arguments.callee(num-1)
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- <script defer src="logDiv.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="common.css">
+</head>
+<body>
+<div class="div"></div>
+<script type="text/javascript">
+    function test(resolve, reject) {
+      var timeOut = Math.random() * 2;
+      console.log('set timeout to: ' + timeOut + ' seconds.');
+      setTimeout(function () {
+          if (timeOut < 1) {
+              console.log('执行成功resolve');
+              resolve('200 OK');
+          }
+          else {
+              console.log('执行失败reject');
+              reject('timeout in ' + timeOut + ' seconds.');
+          }
+      }, timeOut * 1000);
+    }
+    var p1 = new Promise(test).then(function (result) {
+        console.log('成功：' + result);
+    }).catch(function (reason) {
+        console.log('失败：' + reason);
+    });
+</script>
+</body>
+</html>

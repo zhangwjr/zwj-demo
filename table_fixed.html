@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表格固定列</title>
+</head>
+<body>
+<div>
+<style>
+    div{
+        width: 100%;
+        white-space: nowrap;
+    }
+    table th{
+        border: 1px solid #000;
+        background-color: #999;
+        box-sizing: border-box;
+    text-align: left;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    }
+    table td{
+        border: 1px solid #000;
+    }
+    .tab1{
+        width: 20%;
+        float: left;
+    }
+    .tab2{
+        width: 70%;
+        float: left;
+        overflow: hidden;
+        overflow-x: scroll;
+    }
+    .tab3{
+        width: 10%;
+        float: left;
+    }
+</style>
+<body>
+<div>
+    <table class="tab1">
+        <thead>
+        <tr>
+            <th>首列</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>首列</td>
+        </tr>
+        <tr>
+            <td>111</td>
+        </tr>
+        <tr>
+            <td>222</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="tab2">
+        <thead>
+        <tr>
+            <th>中间列</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>中间列</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="tab3" >
+        <thead>
+        <tr>
+            <th>尾列</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>尾列</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组去重</title>
+    <style type="text/css">
+        .box{
+            width:200px;
+            height:200px;
+            line-height: 200px;
+            text-align: center;
+            background: pink;
+            margin:10px; /*上 右 下 左*/
+            background-position:-5px 10px;
+            box-shadow: 10px 10px #ccc;
+        }
+        .box2{
+            width:200px;
+            height:200px;
+            line-height: 200px;
+            text-align: center;
+            background: pink;
+            margin:10px; /*上 右 下 左*/
+
+            transition: width 2s;
+
+        }
+        .box2:hover {
+            width:300px;
+        }
+
+
+        .box3{
+            width:200px;
+            height:200px;
+            line-height: 200px;
+            text-align: center;
+            background: pink;
+            margin:10px; /*上 右 下 左*/
+            transform:  translate(50px,100px) 
+        } 
+    </style>
+</head>
+<body>
+    <div class="box">1111</div>
+    <div class="box2">2222</div>
+    <div class="box3">3333</div>
+    <script type="text/javascript">
+    	var arr = [1,2,3,1,2,3,3,4,11,11,22,22];
+        /*
+        思路1：利用对象属性存在的特性，如果没有该属性则存入新数组。
+        1.创建一个新数组存放结果
+        2.创建一个对象
+        3.for循环事每次取出一个元素与对象进行对比，如果这个元素不重复则把它放放到存放结果的数组中，同时把这个元素
+        放在的内容放到对象中作为键值对的“键”，并赋值为1；
+          每一循环都会对从原数组中取出一个元素，然后到对象中去访问它(json[arr[i]]),如果访问到值，说明重复，
+          程序会进入下一次循环
+        */
+        function unique1(arr){
+            var newArr = [],json = {};
+            for(var i = 0;i<arr.length;i++){
+                if(!json[arr[i]]){
+                    newArr.push(arr[i])
+                    json[arr[i]] = 1
+                }
+            }
+            console.log(json)//{1: 1, 2: 1, 3: 1, 4: 1, 11: 1, 22: 1}
+            return newArr
+        }
+
+
+
+        /*
+        思路2：先将数组排序，再与相邻的进行比较，如果不同则存入新数组  --- 推荐使用，性能更高
+        */
+        function unique2(arr){
+            var newArr = arr.sort();
+            var res = [newArr[0]];
+            for(var i = 0;i<newArr.length;i++){
+                if(newArr[i] !== res[res.length-1]){
+                    res.push(newArr[i])
+                }
+            }
+            console.log(newArr)
+            return res
+        }
+
+        /*
+        思路3：利用数据的indexOf下标属性来查询   --- 推荐使用，性能更高
+        */
+        function unique3(arr){
+            var res = []
+            for(var i = 0;i<arr.length;i++){
+                if(res.indexOf(arr[i]) == -1){
+                    res.push(arr[i])
+                }
+            }
+            return res
+        }
+
+        /*
+        思路4：利用数组原型对象上的includes   --- 推荐使用，性能更高
+        */
+        function unique4(arr){
+            var res = []
+            for(var i = 0;i<arr.length;i++){
+                if(!res.includes(arr[i])){
+                    res.push(arr[i])
+                }
+            }
+            return res
+        }
+
+        /*
+        思路5：利用数组原型对象上的filter和includes  --- 推荐使用，性能更高
+        */
+        function unique5(arr){
+            var res = []
+            res = arr.filter(function(v){
+                return res.includes(v) ? '' : res.push(v)
+            })
+            return res
+        }
+
+        /*
+        思路6：利用数组原型对象上的forEach和includes   --- 推荐使用，性能更高
+        */
+        function unique6(arr){
+            var res = []
+            arr.forEach(function(v){
+                res.includes(v) ? '' : res.push(v)
+            })
+            return res
+        }
+
+        /*
+        思路7：利用ES6的set方法
+        ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+        Set 本身是一个构造函数，用来生成 Set 数据结构。
+        */
+        function unique7(arr){
+            return Array.from(new Set(arr))
+        }
+
+
+
+        //console.log(unique7(arr))
+
+        var Div = document.getElementById('demo')
+    </script>
+</body>
+</html>
+
+
+

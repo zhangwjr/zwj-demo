@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>设计模式--装饰者</title>
+</head>
+<body>
+<div>
+    <h2>装饰者模式是一种结构型设计模式，目的是为了促进代码复用。装饰者模式与Mixin很相似，可以算是一种子类化的替代方案。</h2>
+</div>
+<script>
+	function MacBook (screenSize){
+		this.cost = function(){
+			if(screenSize == 13){
+				return 999
+			}else{
+				return 1999
+			}
+		}
+	}
+	// 装饰者1:增加内存配置，费用上升100
+	function Memory (macbook) {
+	  	var v = macbook.cost();
+	  	macbook.cost = function () {
+	    	return v + 100
+	  	}
+	}
+	// 装饰者2:增加硬盘容量，费用上升250
+	function HardDiscCapacity (macbook) {
+	  	var v = macbook.cost();
+	  	macbook.cost = function () {
+	  	  	return v + 250
+	  	}
+	}
+
+	// 装饰者3:延长质保期，费用上升120
+	function Insurance (macbook) {
+	  	var v = macbook.cost();
+	  	macbook.cost = function () {
+	    	return v + 120
+	  	}
+	}
+
+	// 使用装饰者
+	var mb = new MacBook(13)
+	Memory(mb)
+	HardDiscCapacity(mb)
+	Insurance(mb)
+	/*在上面的例子中，装饰者重写了MacBook类的cost方法。相比直接修改MacBook的cost方法，这样的写法使我们的代码更易读，也更佳健壮。*/
+</script>
+</body>
+</html>

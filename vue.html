@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg">
+    <!-- <input type="text" v-model="lastName"> -->
+    <div v-text="msg"></div>
+    <div v-once>{{msg}}</div>
+    <div v-html="p"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            firstName:'zhang',
+            lastName:'wjr',
+            msg:'你好，世界',
+            p:'<p>hello</p>'
+        },
+        computed:{
+            
+        },
+        watch:{
+
+        },
+        methods:{
+
+        },
+        beforeCreate(){
+            
+            console.log(1,'beforeCreate')
+        },
+        created(){
+            console.log(2,'created')
+        },
+        beforeMount(){
+            console.log(3,'beforeMount')
+        },
+        mounted(){
+            console.log(4,'mounted')
+        },
+        beforeUpdate(){
+            console.log(5,'beforeUpdate')
+        },
+        updated(){
+            console.log(6,'updated')
+        },
+        beforeDestory(){
+            console.log(7,'beforeDestory')
+        },
+        destoryed(){
+            console.log(8,'destoryed')
+        }
+
+    })
+</script>
+</body>
+</html>

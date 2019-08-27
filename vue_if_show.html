@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg">
+    <div v-text="msg"></div>
+    <div v-once>{{msg}}</div>
+    <div v-html="p"></div>
+
+    <div v-show="isShow">这里使用的是v-show,只是简单的切换CSS的display</div>
+    <div v-if="isShow">看见,看不见,v-show真正的实现元素是否渲染</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            firstName:'zhang',
+            lastName:'wjr',
+            msg:'你好，世界',
+            p:'<p>hello</p>',
+            isShow:true
+        },
+        computed:{
+            
+        },
+        watch:{
+
+        },
+        methods:{
+
+        }
+    })
+</script>
+</body>
+</html>

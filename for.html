@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for</title>
+</head>
+<body>
+<div>
+	<div style="width:100px;height:100px;border: 1px solid #ccc;display: none;">示例1</div>
+	<div style="width:100px;height:100px;border: 1px solid #ccc;visibility: hidden;">示例2</div>
+	<div style="width:100px;height:100px;border: 1px solid #ccc;">示例3</div>
+</div>
+<script>
+	// for continue 结束本次循环,进行下一个循环  立即跳出当前循环，继续下一次循环（跳到i++的地方） (放打印代码前面) 一般写在打印之前
+	
+	// for break  结束/中止for循环   立即跳出当前整个循环，即循环结束，开始执行循环后面的内容（直接跳传出大括号）一般写在打印之后
+	for(var i = 1; i <= 10; i++){
+		console.log('before'+i) // 1,2,3,4,5,6,7
+		if(i === 5){
+			continue;
+		}
+		if(i === 7){
+	 		break; 
+		}
+	    console.log('after'+i)  // 1 2 3 4 6
+	}
+
+</script>
+</body>
+</html>

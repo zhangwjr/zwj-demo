@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>requestIdleCallback</title>
+</head>
+<body>
+<script src="https://yc.yonyoucloud.com/cpu-cdn/js/jquery-1.9.1.js"></script>
+    <div>
+        <button id="btn1">使用requestAnimationFrame，没有触发timeout</button>
+        <button id="btn2">没for循环，触发timeout</button>
+    </div>
+<script>
+ //核心代码，全部代码请直接查看源码
+
+function rIC(){
+    requestId = requestIdleCallback(cb,{
+        timeout : 100
+    });
+}
+
+
+$("#btn1").on("click",_cb1);
+$("#btn2").on("click",_cb2);
+function _cb1(){
+    //_reset();
+    
+    var i = 0,
+        len = 5;
+                    
+    function _s(){
+        
+        if(i < len){
+            add("i="+i);
+            rAF(_s);
+            i++;
+        }
+    }
+    
+    //requestIdleCallback的调用
+    rIC();
+    
+    //rAF(_s);
+    _s();
+    //这里的两种调用方式，会对rIC有什么区别呢？
+    //在本篇文章的最后，会进行一下说明。
+    
+}
+                        
+function _cb2(){
+    //_reset();
+    
+    var i = 0,
+        len = 10000;
+        
+    rIC();
+                        
+    add("循环了10000次，1000的倍数才会显示！");
+    for(i;i<len;i++){
+        if(i%1000 == 0){
+            add("i="+i);
+        }
+        
+        //用来阻塞时间
+        console.log("i="+i);
+    }
+    
+}
+
+</script>
+</body>
+</html>
+

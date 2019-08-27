@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作用域</title>
+</head>
+<style type="text/css">
+	
+</style>
+<body>
+    <div class="wrapper">作用域</div>
+    <script type="text/javascript">
+        var a = 1;
+        var b = 2;
+        function foo(){
+            console.log(this)//window
+            console.log(a)//undefined
+            console.log(this.b)//2
+            console.log(b)//undefined
+            var a = 3;
+            var b = 4;
+            return function(){
+                console.log(this)//obj
+                console.log(a)//3
+                console.log(this.b)//200
+                console.log(b)//4
+            }
+
+        }
+        var obj = {
+            a: 100,
+            b: 200,
+            c: foo()
+        }
+        obj.c()
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包</title>
+</head>
+<body>
+<div>
+    <p>闭包，是一个能够访问到其他函数内部变量的函数</p>
+</div>
+<script>
+    for(var i = 0; i < 5; i++){
+        setTimeout(function(){
+            console.log(i)
+        },1000)
+    }  //  5 5 5 5 5 
+
+
+    //setTimeout加第三个参数
+    for(var i = 0; i < 5; i++){
+        setTimeout(function(index){   
+            console.log(index)
+        },1000,i)  // 0 1 2 3 4 
+    }
+
+    // 闭包
+    for(var i = 0; i < 5; i++){
+        setTimeout((function(index){
+            console.log(index)
+        })(i),1000)  // 0 1 2 3 4 
+    }
+
+    // 闭包
+    for(var i = 0; i < 5; i++){
+        setTimeout((function(index){
+            return function(){
+                console.log(index)
+            }
+        })(i),1000)   // 0 1 2 3 4 
+    }
+
+    // 这也算一种形式的闭包
+    function counter(){
+        var index = 1
+        function add(){
+            index++
+        }
+        return add
+    }
+    var a = counter()
+    var b = counter()
+</script>
+</body>
+</html>

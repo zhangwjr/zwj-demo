@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作用域</title>
+</head>
+<body>
+    <div id="app">变量提升</div>
+    <script>
+        //变量提升
+        var a = 1;
+        function show(){
+            console.log(a)//undefined
+            //由于变量提升，此时作用域定义的变量a已经被定义，类似var a;但是还没有被赋值，既a=undefined
+            var a = 2;
+            console.log(a)//2
+        }
+        show()
+        console.log(a)//1
+        // undefined  1
+
+        // var a = 1;
+        // function show(){
+        //     console.log(a)//1
+        //     //a取得就是全局状态下的a,此时即为1
+        //     a = 2;
+        //     console.log(a)//2
+        // }
+        // show()
+        // console.log(a)
+        // undefined  2
+
+
+        //另一种情况
+        /*function text(){
+            var a = 1;
+            console.log(a+b);
+            //此时b的作用域提升上去了，b存在，不是not defined，而是undefined,因为1+undefined得出NaN
+            var b = 2;
+            return inner();
+            function inner(){
+                var a = 10;
+                console.log(a+b);
+                return a+b
+            }
+
+        }
+        text()*/
+        //NaN  12
+
+
+        //函数提升
+        //js中创建函数的方式有两种：函数声明式和函数字面量式。只有函数声明才存在函数提升
+        // console.log(fn1)//fn1
+        // console.log(fn2)//undefined
+        // function fn1(){}
+        // var fn2 = function(){}
+
+        // (function() {
+        //     console.log(a);//undefined
+        //     a = 'aaa';
+        //     var a = 'bbb';
+        //     console.log(a);//bbb
+        // })();
+
+
+
+
+    </script>
+</body>
+</html>

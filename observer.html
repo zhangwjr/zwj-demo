@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>observer</title>
+</head>
+
+<body>
+    <p>观察者模式（Observer）</p>
+    <p>观察者模式又叫做发布-订阅模式或消息机制</p>
+    <p>它定义了对象间的一种一对多的依赖方式，只要一个对象的状态发生改变，所有依赖于它的对象都得到通知并自动更新，解决了主体对象与观察者之间功能的耦合，即一个对象状态改变，通知其他对象的更新</p>
+    <script type="text/javascript">
+        const Observe = (function () {
+            let message = {};
+            return {
+                //注册消息接口
+                on: function (type, fn) {
+                    //如果消息不存在,则创建一个消息类型
+                    if (typeof message[type] == 'undefined') {
+                        //将执行方法推入到该消息对应的执行对列中
+                        message[type] = [fn]
+                    } else {
+                        //如果此消息存在，直接将执行方法推入该消息的执行对列中
+                        message[type].push(fn)
+                    }
+                },
+                //发布消息接口
+                subscribe: function (type, args) {
+                    //如果该消息没有注册，直接返回
+                    if (!message[type]) return;
+                    //定义消息信息
+                    let events = {
+                            type: type, //消息类型
+                            args: args || {} //参数
+                        },
+                        i = 0, //循环变量
+                        len = message[type].length; //执行对列长度
+                    for (; i < len; i++) {
+                        //依次执行注册消息对应的方法
+                        message[type][i].call(this, events)
+                    }
+
+                },
+                //移除消息接口
+                off: function (type, fn) {
+                    if (message[type] instanceof Array) {
+                        let i = message[type].length - 1
+                        for (; i >= 0; i--) {
+                            message[type][i] === fn && message[type].splice(i, 1)
+                        }
+                    }
+                }
+            }
+        })()
+        //订阅消息
+        Observe.on('say', function (data) {
+            console.log(data.args.text);
+        })
+        Observe.on('success', function () {
+            console.log('success')
+        });
+
+        //发布消息
+        Observe.subscribe('say', {
+            text: 'hello world'
+        })
+        Observe.subscribe('success');
+    </script>
+</body>
+
+</html>

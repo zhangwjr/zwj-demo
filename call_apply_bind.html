@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>call、apply、bind</title>
+</head>
+<body>
+<div>
+    <h2>call()和apply(), 这两个方法都是函数对象的方法</h2>
+    <h2>它们的第一个参数都是this要指向的对象，后续参数用实参来传递, 它们是立即执行的函数</h2>
+    <h2>call后面的实参与函数方法中的参数是一一对应的，apply后面的实参是要封装成一个数组</h2>
+    <h2>call()和apply()的作用: 1.改变this的指向; 2.实现继承 father.call(this)</h2>
+    <h2>bind()的作用: 1.改变this的指向; 2.bind()是将函数返回，后面还需要()才能调用, 例如: fn.bind(xxx)()   bind()的用法与call()相同</h2>
+</div>
+<script>
+	let obj = {
+		name: 'zhang',
+		age: 20,
+		foo: function(name,age){
+	    	console.log('名称:'+ this.name,'年龄:'+ this.age)
+	    }
+	}
+    
+    let obj2 = {
+    	name: '李四',
+    	age: 18
+    }
+    //obj.foo()
+    obj.foo.call(obj2,'nihao',19)
+    obj.foo.apply(obj2)
+    obj.foo.bind(obj2)()
+
+</script>
+</body>
+</html>

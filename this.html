@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this的一些坑</title>
+</head>
+<style type="text/css">
+	
+</style>
+<body>
+    <div class="wrapper">this的一些坑</div>
+    <h2></h2>
+    <script type="text/javascript">
+        var obj = {
+            name: 'zhang',
+            foo: function(){
+                console.log(this)  //window
+            },
+            foo2: function(){ 
+                console.log(this) //obj
+                setTimeout(this.foo,1000)
+            }
+            /*foo2: function(){
+                console.log(this) //obj
+                var _this = this
+                setTimeout(function(){
+                    console.log(this) //window
+                    console.log(_this) //obj
+                },1000)
+            }*/
+        }
+        obj.foo2()
+        /*执行代码我们可以发现，foo2函数中的this指向的是obj，这个是毋庸置疑的，以为是obj调用的foo2;
+        但是foo()中的this确实指向的window，这是因为执行foo函数的是setTimeout,setTimeout是全局下的方法，故是window
+        */
+
+
+        var obj1 = {
+            name: 'zhang',
+            foo: function(){
+                console.log(this)
+            },
+            foo2: function(){
+                console.log(this)
+                setTimeout(() => {
+                    console.log(this) //obj1
+                    /*这是使用的是箭头函数,这里要注意一下，箭头函数函数体的this对象，就是定义时所在的对象，而不是使用时所在的对象，所以这里的this是obj1,而不是window*/
+                },1000)
+            }
+        }
+        obj1.foo2()
+
+        /*
+            注意：箭头函数中的this只和它定义时候的作用域的this一致，而在与哪里以及如何调用是没有关系的，同时它的this指向是不可改变的
+        */
+
+
+        var afoo = a => {
+            console.log(a)
+            console.log(this)
+        }
+        afoo.call({a:11},2)
+
+        /*
+            注意：箭头函数中的this在它定义时候就已经决定了，如何调用以及在哪里调用与它没有关系的，（call、apply.bind）等操作都无法改变它的this
+        */
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

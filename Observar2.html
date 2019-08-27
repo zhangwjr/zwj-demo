@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>观察者模式</title>
+</head>
+<body>
+<div>
+  <p>观察者模式和发布订阅模式最主要的区别：就是发布订阅增加了一个中介者，发布者和订阅者之和中介打交道，中介者持有发布者和订阅者都引用或传入的回调，用来做订阅通知。</p>
+  <p style="color:red;">观察者模式由具体目标调度，每个被订阅的目标里面都需要有对观察者的处理，会造成代码的冗余。而发布订阅模式则统一由调度中心处理，消除了发布者和订阅者之间的依赖。</p>
+  <p>观察者模式中主体和观察者是互相感知的，发布-订阅模式是借助第三方来实现调度的，发布者和订阅者之间互不感知</p>
+  <p>观察者模式依赖一旦改变就会触发更新，而订阅发布模式则需要手动触发更新</p>
+  <p>观察者模式为一刀切模式，对所有订阅者一视同仁,一旦有消息就会全部发送给订阅者。</p>
+  <p>发布订阅模式 可以戴有色眼镜，有一层过滤或者说暗箱操作；可以根据类型，来选择发送给什么类型的订阅者。避免了全部发送给订阅者</p>
+  <a href="https://juejin.im/post/5cd81a20e51d453b4558d858">https://juejin.im/post/5cd81a20e51d453b4558d858</a>
+</div>
+<script>
+  const Subject = (() => {
+    const observers = [];
+    const addOb = (ob) => {
+        observers.push(ob);
+    };
+    const notify = () => {
+        for (let ob of observers) {
+            if (typeof ob.update === 'function') {
+                ob.update();
+            }
+        }
+    };
+    return {addOb, notify};
+  })();
+
+  let subA = {
+    update: () => {
+        console.log('updateSubA');
+    }
+  };
+  let subB = {
+    update: () => {
+        console.log('updateSubB');
+      }
+  };
+  Subject.addOb(subA);    //添加观察者subA
+  Subject.addOb(subB);    //添加观察者subB
+  Subject.notify();       //通知所有观察者
+</script>
+</body>
+</html>

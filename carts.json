@@ -1,0 +1,17 @@
+[
+	{
+		"isSelected": true,
+		"productCover": "https://img10.360buyimg.com/cms/s80x80_jfs/t3172/131/15172325/113715/5466ecfe/57a0186eN90f75215.jpg",
+		"productName": "深入浅出的node.js",
+		"productInfo": "颜色：Node.js",
+		"productPrice": 57,
+		"productCount": 3
+	},{
+		"isSelected": true,
+		"productCover": "https://img10.360buyimg.com/cms/s80x80_jfs/t21844/147/1811228420/301473/5d7d9a15/5b3991f1N30be96c1.jpg",
+		"productName": "按摩椅",
+		"productInfo": "颜色：重色",
+		"productPrice": 100,
+		"productCount": 3
+	}
+]

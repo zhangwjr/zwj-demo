@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+</head>
+<body>
+<div id="app">
+    <!-- onclick绑定的方法都是window上的 -->
+    <!-- <div onclick="fn">点击</div> -->
+
+    <!-- v-on: ==== @ -->
+    <!-- 如果不传递参数，不要写括号，会自动传入事件，如果写括号了要手动传入$event属性 -->
+    <div @click="fn($event)">1111</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            a:'1122'
+        },
+        methods:{//methods中的this指向的都是实例
+            fn(){
+                console.log(this.a)
+            }
+        }
+        
+    })
+
+</script>
+</body>
+</html>

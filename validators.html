@@ -1,0 +1,62 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo</title>
+</head>
+<body>
+<div class="div"></div>
+<script type="text/javascript">
+    var obj = {
+      id: '',
+      name: '',
+      sex: -2,
+      age: 'string2'
+    }
+    // 必填校验
+    var required = function(obj) {
+      return obj[this.key] !== '' && obj[this.key] != null
+    }
+    // 必须是一个数字
+    var shouldBeNumber = function(obj) {
+      return !isNaN(obj[this.key])
+    }
+    var validators = [
+      {
+        key: 'id',
+        error: 'id should not be null\n',
+        fn: required
+      },
+      {
+        key: 'name',
+        error: 'name should not be null\n',
+        fn: required
+      },
+      {
+        key: 'sex',
+        error: 'sex should be 0/1\n',
+        fn: function(obj) {
+          return obj[this.key] == 0 || obj[this.key] == 1
+        }
+      },
+      {
+        key: 'age',
+        error: 'age should be a number\n',
+        fn: shouldBeNumber
+      }
+    ]
+
+    var checker = function(obj, validators) {
+      var errorMsg = []
+      validators.forEach(function(validate) {
+        if (!validate.fn.call(validate, obj)) {
+          errorMsg.push(validate.error)
+        }
+      })
+      return errorMsg
+    }
+
+    var result = checker(obj, validators)
+</script>
+</body>
+</html>

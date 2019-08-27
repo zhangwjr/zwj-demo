@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>table</title>
+</head>
+<body>
+<script src="http://yc.yonyou.com/cpu-cdn/js/knockout/knockout-3.4.0.min.js"></script>
+<div>
+    <table border="1">
+        <colgroup>
+            <col span="2" style="background-color:red" align="left"><col>
+        </colgroup>
+        
+        <tr>
+            <!-- ko foreach : {data:$root.colData} -->
+            <th data-bind="text:$data.field"></th>
+            <!-- /ko -->
+        </tr>
+
+        <!-- ko foreach : {data:$root.rowData} -->
+        <tr>
+            <td data-bind="text:$data.name"></td>
+            <td data-bind="text:$data.age"></td>
+            <td data-bind="text:$data.class"></td>
+        </tr>
+        <!-- /ko -->
+    </table>
+</div>
+<script>
+    var vm = {
+        colData: [
+            {
+                field:'名称',
+                width:'100'
+            },{
+                field:'年龄',
+                width:'100'
+            },{
+                field:'班级',
+                width:'100'
+            }
+        ],
+        rowData : [
+            {name:"张三",age:"18",class:"一年级"},
+            {name:"李四",age:"20",class:"二年级"},
+            {name:"王五",age:"22",class:"三年级"},
+            {name:"李六",age:"24",class:"四年级"},
+            {name:"孙七",age:"26",class:"五年级"}
+        ]
+    };
+    ko.applyBindings(vm)
+</script>
+</body>
+</html>

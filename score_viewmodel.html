@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>viewmdoel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://yc.yonyoucloud.com/cpu-cdn/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style type="text/css">
+    .container .table thead th{
+        text-align: center!important;
+    }
+    .container .table tbody td{
+        text-align: center!important;
+    }
+</style>
+<body>
+<script src="https://yc.yonyoucloud.com/cpu-cdn/js/jquery-1.9.1.js"></script>
+<script src="https://yc.yonyoucloud.com/cpu-cdn/js/knockout/knockout-3.4.0.min.js"></script>
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th rowspan="2" style="line-height: 58px;">专家名称</th>
+                <th rowspan="2" style="line-height: 58px;">企业名称</th>
+                <th colspan="2">报价轮次</th>
+                <th rowspan="2" style="line-height: 58px;">指标指标</th>
+            </tr>
+            <tr>
+                <th>价格</th>
+                <th>税率</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ko foreach:exportList -->
+            <tr>
+                <td data-bind="text:$data.expertName"></td>
+            </tr>
+            <!-- /ko -->
+        </tbody>
+    </table>
+</div>
+<script>
+    var vm = {
+        supplierList : [
+            {
+                name:'鞍钢招标有限公司',
+                //报价次数
+                priceList:[
+                    {
+                        price:10,
+                        tax:17
+                    },{
+                        price:9.5,
+                        tax:17
+                    }
+                ],
+            }
+        ],
+        //专家信息
+        exportList:[
+            {
+                //专家id
+                id:1,
+                //专家名称
+                expertName:'张专家',
+                //指标id
+                indexId:1,
+                //分值
+                score:10
+            },{
+                //专家id
+                id:2,
+                //专家名称
+                expertName:'李专家',
+                //指标id
+                indexId:2,
+                //分值
+                score:10
+            }
+        ],
+        //指标信息
+        indexs:[
+            {
+                id:1,
+                name:'A指标'
+            },{
+                id:2,
+                name:'B指标'
+            }
+        ]
+    };
+    ko.applyBindings(vm)
+</script>
+</body>
+</html>

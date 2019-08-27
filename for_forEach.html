@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for和forEach的比较</title>
+</head>
+
+<body>
+    <p>结论：浏览器中，在10W的情况下,forEach:0ms,for:3ms;在100W的情况下,forEach:5ms,for:11ms;在1000W的情况下,forEach:28ms,for:83ms;但是到1亿级别的情况下,for的性能就超过了forEach;
+    </p>
+    <br>
+    <P>在node运行环境中，在10万这个级别下， forEach 的性能是 for的十倍;在100万这个量级下， forEach 的性能是和for的一致;但是在1000万级以上的量级上 ， forEach 的性能远远低于for的性能
+    </P>
+    <script>
+        let arr = new Array(100000000);
+
+        let startTime = new Date().getTime()
+        for (let i = 0; i < arr.length; i++) {
+
+        }
+        let endTime = new Date().getTime();
+        console.log('for:' + (endTime - startTime) + 'ms');
+
+        let st1 = new Date().getTime();
+        arr.forEach(function (item) {
+
+        })
+        let et1 = new Date().getTime();
+        console.log('forEach:' + (et1 - st1) + 'ms');
+    </script>
+</body>
+
+</html>

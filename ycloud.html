@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ycloud</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://yc.yonyoucloud.com/cpu-cdn/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://yc.yonyoucloud.com/cpu-cdn/js/ycloud/2.5.x/ycloud.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            /*background-color: #efeff1;*/
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://yc.yonyoucloud.com/cpu-cdn/js/jquery-1.9.1.js"></script>
+    <!-- 在这里ko 要写在ycloud前面，应该ycloud是依赖于ko的 -->
+    <script src="https://yc.yonyoucloud.com/cpu-cdn/js/knockout/knockout-3.4.0.min.js"></script>
+    <script src="https://yc.yonyoucloud.com/cpu-cdn/js/ycloud/2.5.x/ycloud.min.js"></script>
+
+    <div class="container">
+        <y-checkbox-item params="disabled:$root.disabled,checked:$root.isSelected,trueValue:'1',falseValue: '0'">
+        </y-checkbox-item>
+        <y-button params="type:'primary',click:$root.init">获取数据</y-button>
+
+        <y-boxcontent params="title:'基本信息'">
+            <div class="row">
+                <y-form params="labelAlign:'right',labelWidth:'200px'">
+                    <div class="col-md-5">
+                        <y-formitem params="label:'是否打开：'">
+                            <y-switch params="checked:$root.isOpen,checkedValue:'1',unCheckedValue:'0'"></y-switch>
+                        </y-formitem>
+                    </div>
+                    <div class="col-md-5">
+                        <y-formitem params="label:'招标名称：'">
+                            <y-input params="value:$root.project">
+                                </y-switch>
+                        </y-formitem>
+                    </div>
+                </y-form>
+            </div>
+        </y-boxcontent>
+        <y-boxcontent params="title:'基本信息'">
+            <div class="row">
+                <y-form params="labelAlign:'right',labelWidth:'200px'">
+                    <div class="col-md-5">
+                        <y-formitem params="label:'是否打开：'">
+                            <y-switch params="checked:$root.isOpen,checkedValue:'1',unCheckedValue:'0'"></y-switch>
+                        </y-formitem>
+                        <y-formitem params="label:'招标名称：'">
+                            <y-input params="value:$root.project">
+                                </y-switch>
+                        </y-formitem>
+                    </div>
+                </y-form>
+            </div>
+        </y-boxcontent>
+        <y-boxcontent params="title:'这是一个标题',style:{position:'relative'}">
+            <div style="position:absolute;right:20px;top:10px;">
+                <y-button params="type:'primary',click:$root.change">切换</y-button>
+            </div>
+            <y-basicgrid params="ref: 'grid2',
+                maxheight:'auto',
+                rows:$root.rows, 
+                columns: $root.columns">
+            </y-basicgrid>
+        </y-boxcontent>
+        <y-boxcontent>
+            <table class="table">
+                <thead>
+                    <th>序号</th>
+                    <th>投标人</th>
+                    <th>总分</th>
+                    <th>排名</th>
+                </thead>
+                <tbody data-bind="foreach:{ data: $root.supplierList, as: 'row' }">
+                    <tr>
+                        <td data-bind="text:$index()+1"></td>
+                        <td data-bind="text:row.bidderName"></td>
+                        <!-- ko foreach:row.markDetails -->
+                        <td data-bind="text:$data.markResult"></td>
+                        <!-- /ko -->
+                        <td data-bind="text:row.totalScore"></td>
+                        <td data-bind="text:row.rank"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </y-boxcontent>
+    </div>
+    <script>
+        var vm = {
+            isOpen: ko.observable('1'),
+            project: ko.observable('采购招标'),
+            disabled: ko.observable(false),
+            isSelected: ko.observable('1'),
+            rows: ko.observableArray([{
+                'id': 001,
+                'code': 'WL001',
+                'name': '螺纹钢',
+                'apec': 'III级',
+                'num': '1000',
+                'place': '沧州'
+            }, {
+                'id': 002,
+                'code': 'WL002',
+                'name': '弯头',
+                'apec': 'I级',
+                'num': '2000',
+                'place': '鞍山'
+            }, ]),
+            columns: ko.observableArray([{
+                title: '序号',
+                type: 'index',
+                width: '60'
+            }, {
+                title: '物料编码',
+                field: 'code',
+            }, {
+                title: '物料名称',
+                field: 'name',
+            }, {
+                title: '规格',
+                field: 'apec',
+            }, {
+                title: '数量',
+                field: 'num',
+            }, {
+                title: '产地',
+                field: 'place',
+            }]),
+            supplierList: ko.observableArray([]),
+
+            change: function () {
+                window.YCLOUD_REFS.grid2.setColVisibleByField('name', false)
+            },
+            init: function () {
+                $.ajax({
+                    url: 'https://www.easy-mock.com/mock/5b740c9dba4d865f7b27244c/zhangwjr/getSuppliers',
+                    type: 'get',
+                    dataType: "json",
+                    success: function (data) {
+                        self.vm.supplierList(data.data)
+                    }
+                })
+            }
+        };
+        vm.init()
+        ko.applyBindings(vm)
+    </script>
+</body>
+
+</html>

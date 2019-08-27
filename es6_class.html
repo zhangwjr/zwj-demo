@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Class</title>
+</head>
+<body>
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<div>
+    <span>上传文件 ：</span>
+    <input type="file" name = "file" id = "fileId" /> 
+    <button  type = "submit" name = "btn" value = "提交" id = "btnId" onclick="check()" /> 提交
+</div>
+<script>
+    function check() {
+        var objFile = document.getElementById("fileId");
+        if(objFile.value == "") {
+            alert("不能空")
+        }
+        var files = $('#fileId').prop('files');//获取到文件列表
+        if(files.length == 0){
+            alert('请选择文件');
+        }else{
+            var reader = new FileReader();//新建一个FileReader
+            reader.readAsText(files[0], "UTF-8");//读取文件 
+            reader.onload = function(evt){ //读取完文件之后会回来这里
+                var fileString = evt.target.result; // 读取文件内容
+                console.log(fileString)
+            }
+        }
+    }
+</script>
+</body>
+</html>

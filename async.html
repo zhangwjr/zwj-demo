@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dva版的计数器</title>
+    <script src="https://npmcdn.com/react@15.2.0/dist/react.min.js"></script>
+	<script src="https://npmcdn.com/react-dom@15.2.0/dist/react-dom.min.js"></script>
+	<script src="https://npmcdn.com/dva@1.0.0/dist/dva-min.js"></script>
+	<script src="https://npmcdn.com/dva@1.0.0/dist/router-min.js"></script>
+	<script src="https://npmcdn.com/babel-polyfill@6.9.1/dist/polyfill.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/javascript">
+        /*setTimeout(() => console.log('d'),0)
+
+        var P =  new Promise(function(resolve, reject) {
+        	console.log('a')
+            resolve()
+        })
+    	P.then( ()=> {
+    		var begin = Date.now()
+    		while(Date.now() - begin < 1000){
+    			console.log('c1')
+				new Promise(function(resolve,reject){
+					resolve()
+				}).then(() => console.log('c2'))
+    		}
+			
+    	});*/
+
+
+	    /*function sleep(duration) {
+	        return new Promise(function(resolve, reject) {
+	            console.log("b");
+	            setTimeout(resolve,duration);
+	        })
+	    }
+	    console.log("a");
+	    sleep(5000).then(()=>console.log("c"));*/
+
+
+	    function sleep(duration){
+	    	return new Promise(function(resolve,reject){
+    			return setTimeout(resolve,duration)
+	    	})
+	    }
+
+	    async function foo(name){
+	    	await sleep(5000);
+	    	console.log(name);
+	    }
+
+	    async function foo2(){
+	    	await foo('a')
+	    	await foo('b')
+	    }
+
+	    foo2()
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

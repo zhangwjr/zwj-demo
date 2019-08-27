@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>async await</title>
+</head>
+
+<body>
+    <script>
+        async function fn1() {
+            var data = await fn2()
+            console.log('fn1 end')
+        }
+
+        function fn2() {
+            console.log('fn2 start')
+        }
+        console.log('script start')
+        console.log(fn1())
+    </script>
+</body>
+
+</html>

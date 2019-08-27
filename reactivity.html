@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据响应</title>
+</head>
+<body>
+<div id="app">
+    <!-- {{a.scholl}} -->
+    {{arr}}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+    //vue回循环data中的数据（数据劫持）依次的增加getter和setter,
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            /*a:{
+              //1.直接赋值  
+            }*/
+            arr:[1,2,3,4,5]
+        }
+        
+    })
+
+    //vm.$set(vm.a,'scholl',1)//2.此方法可以给对象添加响应式的数据变化
+    //使用变量时，先要初始化，否则新增的属性没有不会导致页面刷新
+
+
+    //3.直接退换对象
+    // vm.a = {scholl:'aaa',age:'12'}
+
+
+    //vm.arr[0]==100;vm.arr.length-=2；这两种方法都不能导致页面发生变化
+    //可是使用变异方法：pop、push、shift、unshift、sort、reverse、splice、filter、map
+    vm.arr.reverse()
+</script>
+</body>
+</html>

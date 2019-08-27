@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>构造函数</title>
+</head>
+<body>
+	<div id="root">构造函数</div>
+	<script type="text/javascript">
+		/*//constructor构造函数
+        function Person(){
+        	this.name  = 'zhangsan'
+        	this.age = 19
+        }
+
+        //实例
+        var  instance = new Person()
+
+        //原型
+        var  prototype = Person.prototype*/
+
+        var promise = new Promise(function(resolve, reject) {
+		  	console.log('Promise instance');
+		  	resolve();
+		});
+
+		promise.then(function() {
+		  	console.log('resolved result');
+		});
+		for(var i=0;i<100;i++) {
+			console.log(i);
+		};
+
+		function fn(){
+			console.log(this)
+			let arr = [this.name,'性别男',this.age]
+			console.log(arr.join(''))
+		}
+
+		var obj = {
+			name: 'zhangwjr',
+			age: '18'
+		}
+		fn.call(obj)
+
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

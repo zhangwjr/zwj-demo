@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>$root</title>
+</head>
+<body>
+<script src="http://yc.yonyou.com/cpu-cdn/js/knockout/knockout-3.4.0.min.js"></script>
+<div>
+    <div data-bind="component:'message-editor'"></div>
+    <div data-bind="component:{name:'message-editor',params:{initialText:'Hello World!'}}"></div>
+</div>
+<script>
+    ko.components.register('message-editor',{
+    	viewModel:function(params){
+    		console.log(params)
+    		this.text = ko.observable(params&&params.initialText||'')
+    	},
+    	template:'Message: <input data-bind="value: text" /> '
+            + '(length: <span data-bind="text: text().length"></span>)'
+    })
+    ko.applyBindings()
+</script>
+</body>
+</html>

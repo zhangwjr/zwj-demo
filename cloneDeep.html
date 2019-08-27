@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深拷贝</title>
+</head>
+<body>
+    <div>深拷贝</div>
+    <script>
+        function cloneDeep(obj){
+          function isObject(o){
+            return (typeof o === 'object' || typeof o === 'function') && o !== null
+          }
+          if(!isObject(obj)){
+            throw new Error('非对象')
+          }
+          let isArray = Array.isArray(obj);
+          let newObj = isArray ? [...obj] : {...obj};
+          Reflect.ownKeys(obj).forEach(key => {
+            newObj[key] = isObject(obj[key]) ? cloneDeep(obj[key]) : obj[key]
+          })
+          return newObj
+        }
+
+        let obj = {
+            a: [1,2,3],
+            b: {
+                c: 2,
+                d: 3
+            }
+        }
+        let newObj = cloneDeep(obj)
+        newObj.b.c = 1
+
+    </script>
+</body>
+</html>

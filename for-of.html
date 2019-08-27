@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for-of</title>
+</head>
+<body>
+    <div>for-of循环,用来遍历所有数据结构的统一的方法,例如数组、Set和Map结构,某些类似数组的对象（比如arguments对象、DOM NodeList 对象）、后文的 Generator 对象,以及字符串。</div>
+    <ul>
+        <li>这是最简单、最直接的遍历数组元素的语法</li>
+        <li>这个方法避开了for-in循环的所有缺陷</li>
+        <li>与forEach()不同的是,它可以正确响应break、continue和return语句</li> 
+    </ul>
+    <script>
+        let m = new Set([1,2,3,4,3,2,5])
+
+        for(let key of m){
+            console.log(key)
+        }
+
+        
+
+    </script>
+</body>
+</html>

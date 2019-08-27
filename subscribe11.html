@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>subscribe</title>
+</head>
+<body>
+<script src="http://yc.yonyou.com/cpu-cdn/js/knockout/knockout-3.4.0.min.js"></script>
+<div>
+    <input type="text" data-bind="value:name">
+    <h3 data-bind="text:name"></h3>
+</div>
+<script>
+    var vm = {
+        name : ko.observable('你好')
+
+    };
+
+    ko.applyBindings(vm)
+
+    vm.name.subscribe(function(val){
+        console.log(val)
+    },name,'name-event')
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
