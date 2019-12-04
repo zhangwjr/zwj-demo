@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>回调函数和钩子函数</title>
+</head>
+<body>
+    <button>click one</button>
+    <button>click two</button>
+    <script>
+        var Btn = document.getElementsByTagName('button')
+        //钩子函数, js通过监听函数得知事件的过程即是钩取，对应的函数就是钩子函数
+        Btn[0].onclick = function(){
+            console.log('how are you !')
+            console.log(this.onclick)
+        }
+        //回调函数, DOM通过事件通知js的过程即是回调，对应的函数就是回调函数
+        Btn[1].addEventListener('click',function(){
+            console.log('fine, i am ok !')
+            console.log(this.onclick)
+        })
+
+        /* 
+            钩子函数在捕获消息的第一时间就执行，而回调函数是捕获结束时，最后一个被执行的。
+        */
+    </script>
+</body>
+</html>
