@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>eval</title>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+    <div class="div"></div>
+    <script>
+        function foo(str,a){
+            eval(str); //在此处会执行var b = 3;
+            console.log(a+b);
+        }
+        var b = 2;
+        foo('var b = 3;',1)
+    </script>
+</body>
+</html>
