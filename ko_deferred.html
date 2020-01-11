@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>deferred</title>
+</head>
+<body>
+<script src="https://yc.yonyoucloud.com/cpu-cdn/js/knockout/knockout-3.4.2.min.js"></script>
+<div>
+    <!-- ko foreach: $root -->
+    <div class="example">
+        <table>
+            <tbody data-bind='foreach: data'>
+                <tr>
+                    <td data-bind="text: name"></td>
+                    <td data-bind="text: position"></td>
+                    <td data-bind="text: location"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button data-bind="click: flipData, text: 'Flip ' + type"></button>
+        <div class="time" data-bind="text: (data(), timing() + ' ms')"></div>
+    </div>
+    <!-- /ko -->
+</div>
+<script>
+    function AppViewModel(type) {
+        this.type = type;
+        this.data = ko.observableArray([
+            { name: 'Alfred', position: 'Butler', location: 'London' },
+            { name: 'Bruce', position: 'Chairman', location: 'New York' }
+        ]);
+        this.flipData = function () {
+            this.starttime = new Date().getTime();
+            var data = this.data();
+            for (var i = 0; i < 999; i++) {
+                this.data([]);
+                this.data(data.reverse());
+            }
+        }
+        this.timing = function () {
+            return this.starttime ? new Date().getTime() - this.starttime : 0;
+        };
+    }
+    
+    ko.options.deferUpdates = true;
+    var vmDeferred = new AppViewModel('deferred');
+    
+    ko.options.deferUpdates = false;
+    var vmStandard = new AppViewModel('standard');
+    
+    ko.applyBindings([vmStandard, vmDeferred]);
+</script>
+</body>
+</html>
