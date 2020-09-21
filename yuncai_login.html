@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>云采模拟登陆</title>
+</head>
+<body>
+<div>
+    <button id="login">登陆</button>
+</div>
+<script>
+    var btn = document.getElementById('login')
+    btn.onClick = function(){
+        var queryData = {
+            "username":"demo03",
+            "password":"360e46f15f432af83c77017177a759aba8a58519",
+            "passwordmd5":"9cbf8a4dcb8e30682b927f352d6559a0"
+        }
+        $.ajax({
+            url:"/yuncai/rlogin",
+            type:"post",
+            contentType: "application/json",
+            data:JSON.stringify(queryData),
+            success:function(data){
+                var data = JSON.parse(data)
+                console.log(data)
+            },
+            error: function(data){
+                console.log('接口报错了')
+            }
+        })
+    }
+</script>
+</body>
+</html>

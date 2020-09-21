@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Proxy-todoList</title>
-</head>
+</head> 
 
 <body>
     <div id="app">
@@ -16,18 +16,6 @@
         <ul id="list"></ul>
     </div>
     <script>
-        /* let target = {};
-        let handle = {
-            get: function (target, property) {
-                console.log(`${property}被读取`)
-                return property in target ? target[property] : 3
-            },
-            set: function (target, property, value) {
-                console.log(`${property}被设置为${value}`)
-                target[property] = value;
-            }
-        }
-        let p = new Proxy(target, handle) */
         const obj = {};
         const arr = [];
         const input = document.getElementById("input");

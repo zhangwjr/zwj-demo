@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template</title>
+</head>
+<body>
+<script src="http://yc.yonyou.com/cpu-cdn/js/knockout/knockout-3.4.0.min.js"></script>
+<div>
+    <ul data-bind="template: { 
+        name: 'seasonTemplate', 
+        foreach: seasons, as: 'season',
+        afterAdd: myAdd,
+        afterRender: myRender}">
+        </ul>
+    <script type="text/html" id="seasonTemplate">
+        <li>
+            <strong data-bind="text: name"></strong>
+            <ul data-bind="template: { name: 'monthTemplate', foreach: months, as: 'month' }"></ul>
+        </li>
+    </script>
+     
+    <script type="text/html" id="monthTemplate">
+        <li>
+            <span data-bind="text: month"></span>
+            is in
+            <span data-bind="text: season.name"></span>
+        </li>
+    </script>
+     
+    <script>
+        var viewModel = {
+            seasons: ko.observableArray([
+                { name: 'Spring', months: [ 'March', 'April', 'May' ] },
+                { name: 'Summer', months: [ 'June', 'July', 'August' ] },
+                { name: 'Autumn', months: [ 'September', 'October', 'November' ] },
+                { name: 'Winter', months: [ 'December', 'January', 'February' ] }
+            ]),
+            myRender(){
+                console.log('执行了afterRender')
+            },
+            myAdd(){
+                console.log('执行了afterAdd')
+            }
+        };
+        ko.applyBindings(viewModel);
+    </script>
+</div>
+</body>
+</html>

@@ -12,18 +12,18 @@
 </div>
 <script>
   const PubSub = (() => {
-    const topics = {};  //保存订阅主题
+    const event = {};  //保存订阅主题
     const subscribe = (type, fn) => {   //订阅某类型主题
-      if (!topics[type]) {
-          topics[type] = [];
+      if (!event[type]) {
+          event[type] = [];
       }
-      topics[type].push(fn);
+      event[type].push(fn);
     };
     const publish = (type, ...args) => {    //发布某类型主题
-      if (!topics[type]) {
+      if (!event[type]) {
           return;
       }
-      for (let fn of topics[type]) {      //通知相关主题订阅者
+      for (let fn of event[type]) {      //通知相关主题订阅者
           fn(args);
       }
     };

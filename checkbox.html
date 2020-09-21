@@ -9,21 +9,22 @@
 <body>
 <script src="http://yc.yonyou.com/cpu-cdn/js/knockout/knockout-3.4.0.min.js"></script>
 
-    <!-- ko foreach: items -->
-    <input type="checkbox" data-bind="checkedValue: $data, checked: $root.chosenItems" />
-    <span data-bind="text: itemName"></span>
-    <!-- /ko -->
+<p>Send me spam: <input type="checkbox" data-bind="checked: wantsSpam" /></p>
+<div data-bind="visible: wantsSpam">
+    Preferred flavor of spam:
+    <div><input type="radio"  value=0 data-bind="checked: spamFlavor" /> Cherry</div>
+    <div><input type="radio"  value=1 data-bind="checked: spamFlavor" /> Almond</div>
+    <div><input type="radio"  value=2 data-bind="checked: spamFlavor" /> Monosodium Glutamate</div>
+</div>
  
 <script type="text/javascript">
     var viewModel = {
-        items: ko.observableArray([
-            { itemName: '北京' },
-            { itemName: '上海' }
-        ]),
-        chosenItems: ko.observableArray()
+        wantsSpam: ko.observable(true),
+        spamFlavor: ko.observable("1") // Initially selects only the Almond radio button
     };
+ 
+    // ... then later ...
     ko.applyBindings(viewModel)
-
 </script>
  
 </body>

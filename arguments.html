@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>arguments</title>
+</head>
+
+<body>
+	<p>在函数的内部,有两个特殊的对象:arguments和this</p>
+    <script>
+        function show(){
+        	var obj = obj || {}
+        	obj.name = 'tom'
+        	obj.age = 18
+        	return obj
+        }
+        var obj = {
+        	name:'zhangshan',
+        	age: 20
+        }
+        var obj2 = show(obj,2)
+        console.log(obj2)
+    </script>
+</body>
+
+</html>

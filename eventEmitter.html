@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eventEmitter</title>
+</head>
+<body>
+<div id="app">
+    <p>发布订阅模式---->Pub-Sub</p>
+</div>
+<script>
+    class eventEmitter {
+        constrcutor() {
+            //创建一个对象事件
+            this._events = Object.create(null);
+        }
+        /*绑定事件*/
+        on(type,hander) {
+            if(!this._events[type]){
+                this._events[type] = []
+            }
+            this._events[type].push(hander)
+            return this
+        }
+        /*通知时间*/
+        emit(type,...args) {
+            //没有该事件，不执行
+            if(!this._events[type]){
+                return this
+            }
+            const fns = this._events[type]
+            //执行该事件对象的函数数组，并传入参数
+            fns.forEach(fn => fn.call(this,...args))
+            return this
+        }
+        /*解绑事件*/
+        off(type,hander) {
+            if(!this._events[type]){
+                return this
+            }
+            //如果没有传入事件，则解绑type类型下的所有事件
+            if(!hander){
+                this._events[type] = null
+                return this
+            }
+            //如果有事件，则解绑此事件
+            const index = this._events[type].indexOf(hander)
+            this._events[type].splice(index,1)
+            return this
+        }
+        /*单次绑定事件，执行完后解绑事件*/
+        one(type,hander) {
+            const only = () => {
+                hander.spply(this,arguments)
+                this.off(type,only)
+            }
+            this.on(type,only)
+            return this
+        }
+    }
+    var Bus = new eventEmitter()
+    Bus.on('init',function(){
+        console.log('出发了')
+    })
+</script>
+</body>
+</html>

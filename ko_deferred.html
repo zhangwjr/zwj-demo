@@ -20,7 +20,7 @@
                 </tr>
             </tbody>
         </table>
-        <button data-bind="click: flipData, text: 'Flip ' + type"></button>
+        <button data-bind="click: flipData, text: type"></button>
         <div class="time" data-bind="text: (data(), timing() + ' ms')"></div>
     </div>
     <!-- /ko -->
@@ -29,8 +29,8 @@
     function AppViewModel(type) {
         this.type = type;
         this.data = ko.observableArray([
-            { name: 'Alfred', position: 'Butler', location: 'London' },
-            { name: 'Bruce', position: 'Chairman', location: 'New York' }
+            { name: '张三', position: '海淀', location: '北京' },
+            { name: '李四', position: '长宁', location: '上海' }
         ]);
         this.flipData = function () {
             this.starttime = new Date().getTime();
@@ -46,7 +46,7 @@
     }
     
     ko.options.deferUpdates = true;
-    var vmDeferred = new AppViewModel('deferred');
+    var vmDeferred = new AppViewModel('deferredyan');
     
     ko.options.deferUpdates = false;
     var vmStandard = new AppViewModel('standard');
