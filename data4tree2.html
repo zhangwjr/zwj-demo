@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>二维数组换成树形结构</title>
+</head>
+<body>
+<script>
+var arrx = ["a|A|D", "b|A|D", "c|B|D", "d|B|D", "e|C", "f|C"]
+var list = arrx.map(function(item){
+  return item.split('|').reverse()
+})
+// 二维数组
+// 0: (3) ["D", "A", "a"]
+// 1: (3) ["D", "A", "b"]
+// 2: (3) ["D", "B", "c"]
+// 3: (3) ["D", "B", "d"]
+// 4: (2) ["C", "e"]
+// 5: (2) ["C", "f"]
+function listToTree (rows) {
+  let list = []
+  rows.forEach(row => {
+    let newArr = list
+    for (let item of row) {
+      let obj = newArr.find(row => row.item == item)
+      if (!obj) {
+        obj = { item, children: [] }
+        newArr.push(obj)
+      }
+      newArr = obj.children
+    }
+  })
+  return list
+}
+
+console.log(JSON.stringify(listToTree(list),null,2))
+</script>
+</body>
+</html>

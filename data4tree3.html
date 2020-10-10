@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>二维数组换成树形结构</title>
+</head>
+<body>
+<script>
+//var arr = ["品牌", "铝板|材料成本", "废料处理|材料成本", "报价说明", "匹配数量"]
+var arrx = ["a|A|D", "b|A|D", "c|B|D", "d|B|D", "e|C", "f|C"]
+var list = arrx.map(function(item){
+  return item.split('|').reverse()
+})
+var obj = {}
+list.forEach((row) => {
+  row.forEach((item, innerIndex) => {
+    if (!obj[item]) {
+      obj[item] = {
+        level: innerIndex+1,
+        name: item,
+        parent: innerIndex == 0 ? null :row[innerIndex-1]
+      }
+    }
+  })
+})
+var newArr = Object.values(obj)
+function find (root){
+  return newArr.filter(item => item.parent == root)
+}
+function foo (root, obj){
+  var newobj = {
+    node: root
+  }
+  obj.node = newobj.node
+  // 找出所有parent是root的数据
+  var child = find(root)
+  obj.children = child
+  child.forEach((c) => {
+    c.children = foo(c.name, newobj)
+  })
+  return child
+}
+var obj = {}
+var a = foo(null, obj)
+console.log(JSON.stringify(a,null,2))
+</script>
+</body>
+</html>
