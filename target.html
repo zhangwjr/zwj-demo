@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>target和currentTarget</title>
+</head>
+<body>
+<div id="app">
+  <div class="outer" @click="outer" style="border:1px solid pink;">最外层
+    <div class="middle" @click="middle" style="border:1px solid green;">中间
+      <div class="inner" @click.stop="inner" style="border:1px solid red;">最内层</div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script type="text/javascript">
+  //event.currentTarget()和 event.target() 的区别?
+
+  // currentTarget 返回当前触发事件的元素（包括冒泡和捕获事件，从内到外都是当前的触发事件的元素）,  
+  // 而target返回触发事件的触发源头 ，（冒泡事件从内到外触发所有点击事件，都会返回事件触发的源头）
+  var vm = new Vue({
+    el:'#app',
+    methods:{
+      outer(e){
+        // console.log( '触发了outer 事件'+"  currentTarget:"+e.currentTarget.className)
+        console.log( '触发了outer 事件'+"  currentTarget:"+e.target.className)
+      },
+      middle(e){
+        // console.log( '触发了middle 事件'+"  currentTarget:"+e.currentTarget.className)
+        console.log( '触发了middle 事件'+"  currentTarget:"+e.target.className)
+      },
+      inner(e){
+        console.log(e);
+        // console.log( '触发了inner 事件'+"  currentTarget:"+e.currentTarget.className)
+        console.log( '触发了inner 事件'+"  currentTarget:"+e.target.className)
+      },
+    }
+  })
+</script>
+</body>
+</html>

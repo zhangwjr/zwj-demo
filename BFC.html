@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFC</title>
+  <style>
+    .box{
+      width:100px;
+      height:100px;
+      background: red;
+      margin: 100px;
+    }
+  </style>
+</head>
+<body>
+    <!-- <div class="box"></div>
+    <div class="box"></div> -->
+    <!-- 两个元素都处于同一个BFC容器下(这里指body元素),所以第一个div的下边距和第二个div的上边距发生了重叠，两个盒子之前的距离只有100px,而不是200px -->
+    <!-- 这不是CSS的bug, 我们可以理解为一种规范，如果想要避免外边距重叠,可以将其放到不同的BFC容器中 -->
+
+
+
+
+    <!-- 由于容器内元素浮动,脱离了文档流,所以容器只剩下2px的边距高度。如果触发容器的BFC,那么容器将会自动包裹着浮动元素 -->
+    <!-- <div style="border:1px solid #000;">
+      <div style="width:100px;height:100px;background:red;float:left;"></div>
+    </div> -->
+
+    <!-- 下面我们将其清浮动触发BFC, 则可以包裹浮动元素 -->
+    <!-- <div style="border:1px solid #000;overflow: hidden;">
+      <div style="width:100px;height:100px;background:red;float:left;"></div>
+    </div> -->
+
+
+    <!-- 这是一个经典的css布局（两列自适应布局），就是应用的BFC特性 -->
+    <div style="float:left; width:200px; background: blue;">left</div>
+    <div style="height:100%;background: red;">right</div>
+
+</body>
+<script>
+  // BFC定义: 块格式化上下文(Block Formatting Context)
+  // 是Web页面可视化CSS渲染的一部分,是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。
+</script>
+</html>

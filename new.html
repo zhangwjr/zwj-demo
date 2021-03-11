@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>new</title>
+</head>
+<body>
+<script>
+  // new一个对象的时候，都干了什么？
+  // new 关键字内部做了三件事
+  /* 
+    1.创建一个空对象;
+    2.让对象继承Func.prototype;
+    3.执行构造函数，并让this指向刚刚创建的新对象；
+    4.返回新对象
+  */
+  function Person(name,age){
+    this.name = name;
+    this.age = age
+  }
+  var tt = new Person('涛涛',20)
+  console.log(tt);
+
+  // 封装一个_new函数, _new需要传入的参数(第一个参数:构造函数名Func; 第二个参数及后面的参数是:构造函数的参数)
+  function _new() {
+    // 1.拿到传入的参数的第一个参数，即构造函数Func
+    var Func = [].shift.call(arguments)
+    // 2.创建一个空对象，并让其继承Func.prototype
+    var obj = Object.create(Func.prototype)
+    // 3.执行构造函数，并让this指向新创建的空对象obj
+    Func.apply(obj,arguments)
+    return obj
+  }
+  var xm = _new(Person,'小明',18)
+  console.log(xm);
+</script>
+</body>
+</html>
