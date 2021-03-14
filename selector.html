@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css选择器</title>
+  <style>
+    #app{
+      width:100px;
+      height:100px;
+      background: red;
+    }
+    .box{
+      width:200px;
+      height:200px; 
+      /* background: blue; */
+    }
+    div{
+      background: pink!important;
+    }
+  </style>
+</head>
+<body>
+    <!-- style="width:200px;height:200px; background: blue;" -->
+    <div id="app" class="box">你好世界</div>
+    <script>
+      /* 
+        !important > 行内样式 > ID选择器 > 类选择器 > 标签选择器
+
+        后代选择器
+        子元素选择器
+      */
+    </script>
+</body>
+</html>
