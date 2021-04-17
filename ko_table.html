@@ -28,6 +28,11 @@
         </tr>
         <!-- /ko -->
     </table>
+    <!-- ko if:isShow  -->
+    <div>这是ko if的测试</div>
+    <!-- /ko -->
+    <div data-bind="if:isShow">这是if指令</div>
+    <div data-bind="visible:isShow2">这是show指令</div>
 </div>
 <script>
     var vm = {
@@ -49,7 +54,9 @@
             {name:"王五",age:"22",class:"三年级"},
             {name:"李六",age:"24",class:"四年级"},
             {name:"孙七",age:"26",class:"五年级"}
-        ]
+        ],
+        isShow: ko.observable(true),
+        isShow2: ko.observable(true),
     };
     ko.applyBindings(vm)
 </script>

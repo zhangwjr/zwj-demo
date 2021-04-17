@@ -6,11 +6,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BFC</title>
   <style>
-    .box{
+    *{
+      padding: 0px;
+      margin: 0px;
+    }
+    /* .box{
       width:100px;
       height:100px;
       background: red;
       margin: 100px;
+    } */
+    /* div{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+    p{
+      overflow:hidden;
+    }
+    .top{
+      margin-bottom: 20px;
+    }
+    .bottom{
+      margin-top: 10px;
+    } */
+
+    /* .father{
+      width: 200px;
+      height: 200px;
+      background: pink;
+      overflow: hidden;
+    } */
+    /* 3清除浮动 */
+    /* .son{
+      width: 100px;
+      height: 100px;
+      background: red;
+      float: left;
+    }
+    .father{
+      overflow: hidden;
+    }
+    .box{
+      width: 200px;
+      height: 200px;
+      background: yellow;
+    } */
+
+    /* 4 */
+    .father{
+      width: 200px;
+      height: 200px;
+      border: 1px solid #333;
+    }
+    .box{
+      width:100px;
+      height: 100px;
+      background: red;
+      float: left;
+    }
+    .msg{
+      overflow: hidden;
     }
   </style>
 </head>
@@ -19,8 +75,6 @@
     <div class="box"></div> -->
     <!-- 两个元素都处于同一个BFC容器下(这里指body元素),所以第一个div的下边距和第二个div的上边距发生了重叠，两个盒子之前的距离只有100px,而不是200px -->
     <!-- 这不是CSS的bug, 我们可以理解为一种规范，如果想要避免外边距重叠,可以将其放到不同的BFC容器中 -->
-
-
 
 
     <!-- 由于容器内元素浮动,脱离了文档流,所以容器只剩下2px的边距高度。如果触发容器的BFC,那么容器将会自动包裹着浮动元素 -->
@@ -35,13 +89,49 @@
 
 
     <!-- 这是一个经典的css布局（两列自适应布局），就是应用的BFC特性 -->
-    <div style="float:left; width:200px; background: blue;">left</div>
-    <div style="height:100%;background: red;">right</div>
+    <!-- <div style="float:left; width:200px; background: blue;">left</div>
+    <div style="height:100%;background: red;">right</div> -->
 
+
+    <!-- BFC可以解决什么问题？ -->
+    <!-- 1.边距重叠问题 -->
+    <!-- <div class="top"></div>
+    <p><div class="bottom"></div></p> -->
+
+
+    <!-- 2.盒子塌陷问题-->
+    <!-- <div class="father"> -->
+      <!-- 将father作为独立渲染区域，就可以满足需求 -->
+      <!-- <div class="son"></div> -->
+    <!-- </div> -->
+    
+    <!-- 3.清除浮动 -->
+    <!-- <div class="father"> -->
+      <!-- 将father作为独立渲染区域，就可以满足需求 -->
+      <!-- <div class="son"></div>
+      <div class="son"></div>
+    </div>
+    <div class="box"></div> -->
+
+    <!-- 4.浮动环绕文字问题 -->
+    <div class="father">
+      <div class="box"></div>
+      <div class="msg">这是文字这是文字这是文字这是文字这是文字这是文字这是文字这是文字这是文字这是文字这是文字这是文字</div>
+    </div>
 </body>
 <script>
-  // BFC定义: 块格式化上下文(Block Formatting Context)用于清除浮动，防止margin重叠
+  // BFC定义: (独立渲染区域) 块格式化上下文(Block Formatting Context)用于清除浮动，防止margin重叠
   // 是Web页面可视化CSS渲染的一部分,是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。
-  // 
+
+
+  // 创建BFC有哪些方式？
+   /* 
+   0. 根元素，既html元素
+   1. float属性不为none;
+   2. position 为absolute或者fixed
+   3. display 为inline-block ,table-cell table-caption、flex、inline-flex
+   4. overflow 为hidden auto scroll 
+   */
+
 </script>
 </html>

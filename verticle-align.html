@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS垂直居中</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    .out{
+      width:600px;
+      height: 300px;
+      background: pink;
+    }
+    .in{
+      width: 50%;
+      height: 50%;
+      background: yellow;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    /* .out{
+      width:600px;
+      height: 300px;
+      background: pink;
+      display: flex;
+    }
+    .in{
+      width: 50%;
+      height: 50%;
+      background: yellow;
+      align-self: center;
+    } */
+  </style>
+</head>
+<body>
+  <div class="out">
+    <div class="in"></div>
+  </div>
+  <script>
+    // 1.通过vertical-align:middle; 实现css垂直居中
+    // 2.通过display:flex;实现垂直居中 （父级元素要display:flex; 子级元素align-self:center;）
+  </script>
+</body>
+</html>
