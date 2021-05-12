@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntersectionObserver可以很方便的监听元素是否进入可视区域</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .test {
+      width: 200px;
+      height: 1000px;
+      background: orange;
+    }
+    
+    .box {
+      width: 150px;
+      height: 150px;
+      margin: 50px;
+      background: red;
+    }
+    </style>
+</head>
+<body>
+    <div class="test">test</div>
+    <div class="box">box</div>
+    <script>
+      const box = document.querySelector('.box');
+      // const viewHeight = document.documentElement.clientHeight;
+
+      // window.addEventListener('scroll', () => {
+      //   const top = box.getBoundingClientRect().top;
+      //   if (top < viewHeight) {
+      //     console.log('进入可视区域');
+      //   }
+      // });
+
+      const intersectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((item) => {
+          if (item.isIntersecting) {
+            console.log('进入可视区域');
+          }
+        })
+      });
+      // observe(监听哪一个元素)
+      intersectionObserver.observe(box);
+    </script>
+</body>
+</html>
