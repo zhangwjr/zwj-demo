@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <div class="app">
+      <h1>秋风的笔记</h1>
+    </div>
+    <script>
+      function cssHelper(el, prototype) {
+        for (let i in prototype) {
+          el.style[i] = prototype[i];
+        }
+      }
+
+      function createItem() {
+        const item = document.createElement('div');
+        item.innerHTML = '秋风的笔记';
+        cssHelper(item, {
+          position: 'absolute',
+          top: `50px`,
+          left: `50px`,
+          fontSize: `20px`,
+          color: '#000',
+          lineHeight: 1.5,
+          opacity: 0.1,
+          transform: `rotate(-30deg)`,
+          transformOrigin: '0 0',
+          userSelect: 'none',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+        });
+        return item;
+      }
+
+      const waterHeight = 100;
+      const waterWidth = 180;
+      const waterWrapper = document.createElement('div');
+      const { clientWidth, clientHeight } =
+        document.documentElement || document.body;
+      const column = Math.ceil(clientWidth / waterWidth);
+      const rows = Math.ceil(clientHeight / waterHeight);
+      for (let i = 0; i < column * rows; i++) {
+        const wrap = document.createElement('div');
+        cssHelper(
+          wrap,
+          Object.create({
+            position: 'relative',
+            width: `${waterWidth}px`,
+            height: `${waterHeight}px`,
+            flex: `0 0 ${waterWidth}px`,
+            display: 'inline-block',
+            overflow: 'hidden',
+          })
+        );
+        wrap.appendChild(createItem());
+        waterWrapper.appendChild(wrap);
+      }
+      document.body.appendChild(waterWrapper);
+    </script>
+  </body>
+</html>
