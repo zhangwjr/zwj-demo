@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>tab</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul {
+        list-style: none;
+      }
+      #tabBox {
+        box-sizing: border-box;
+        width: 500px;
+        margin: 20px auto;
+      }
+      #navBox {
+        display: flex;
+        position: relative;
+        top: 1px;
+      }
+      #navBox li {
+        box-sizing: border-box;
+        margin-right: 10px;
+        padding: 0 10px;
+        line-height: 35px;
+        border: 1px solid #999;
+        cursor: pointer;
+      }
+      #navBox li.active {
+        border-bottom-color: #fff;
+        background-color: pink;
+      }
+      #tabBox > div {
+        display: none;
+        box-sizing: border-box;
+        padding: 10px;
+        height: 150px;
+        border: 1px solid #999;
+      }
+      #tabBox > div.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tabBox">
+      <ul id="navBox">
+        <li class="active">编程</li>
+        <li>读书</li>
+        <li>运动</li>
+      </ul>
+      <div class="active">编程使我快乐</div>
+      <div>读书使我幸福</div>
+      <div>运动使我健康</div>
+    </div>
+
+    <script type="text/javascript">
+      var tabBox = document.getElementById('tabBox');
+      var tabList = tabBox.getElementsByTagName('div');
+
+      var navBox = document.getElementById('navBox');
+      var navList = navBox.getElementsByTagName('li');
+
+      for (let i = 0; i < navList.length; i++) {
+        // 记录当前的下标
+        navList[i].index = i;
+        // 给nav里的所有元素天剑点击事件
+        navList[i].onclick = function () {
+          //给nav和tab里面的所有内容取消active类名
+          for (let j = 0; j < tabList.length; j++) {
+            navList[j].className = '';
+            tabList[j].className = '';
+          }
+          // 当前点击的li加active类名，this就是当前点击的li
+          this.className = 'active';
+          // 给当前div加active类名   ， this.index 表示索引
+          tabList[this.index].className = 'active';
+        };
+      }
+
+      /* 关键点： 所有项先取消active, 然后再给当前点击li和对应的div加active类名 */
+    </script>
+  </body>
+</html>

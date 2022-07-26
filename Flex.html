@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>flex弹性布局</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex弹性布局</title>
+    <style>
+      #box {
+        width: 100px;
+        height: 150px;
+        border: 1px solid #c3c3c3;
+      }
+      #app {
+        width: 600px;
+        height: 150px;
+        border: 1px solid #c3c3c3;
+        display: flex;
+        justify-content: space-around;
+      }
+      #app div {
+        width: 100px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex">
+      <div id="box" style="margin-right: 16px">hello world</div>
+      <div id="app" style="flex: 1">
+        <div style="background-color: coral">1</div>
+        <div style="background-color: lightblue">2</div>
+        <div style="background-color: khaki">3</div>
+        <div style="background-color: pink">4</div>
+      </div>
+    </div>
+  </body>
 </html>
