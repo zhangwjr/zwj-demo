@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>调度</title>
+  </head>
+  <body>
+    <button id="btn">添加</button>
+    <script>
+      const workList = [];
+      const insertItem = (content) => {
+        const ele = document.createElement('div');
+        ele.innerHTML = `${content}`;
+        document.body.appendChild(ele);
+      };
+      // 执行
+      function perform(work) {
+        while (work.count) {
+          work.count--;
+          insertItem(work.count);
+        }
+        // count === 0 时， 再进行一下次调度
+        schedule();
+      }
+      function schedule() {
+        // 从队列取出一个work
+        const curWork = workList.pop();
+        if (curWork) {
+          perform(curWork);
+        }
+      }
+      const btn = document.getElementById('btn');
+      btn.onclick = () => {
+        workList.unshift({
+          count: 10,
+        });
+        // workList.unshift({
+        //   count: 20,
+        // });
+        // 开始调度
+        schedule();
+      };
+    </script>
+  </body>
+</html>
