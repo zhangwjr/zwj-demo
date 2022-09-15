@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>浏览器怎么实现ESM</div>
+    <script type="importmap">
+      {
+        "imports": {
+          "dayjs": "https://cdn.skypack.dev/dayjs@1.10.7",
+          "react": "https://cdn.skypack.dev/react",
+          "lodash": "https://cdn.skypack.dev/lodash"
+        }
+      }
+    </script>
+    <script type="module">
+      import React from 'react';
+      import lodash from 'lodash';
+      console.log('lodash', lodash.map); // zwj-log
+    </script>
+  </body>
+</html>

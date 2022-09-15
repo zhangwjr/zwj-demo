@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeakMap</title>
+  </head>
+  <body>
+    <!-- <script>
+      let john = { name: 'John' };
+      let map = new Map();
+      map.set(john, 'xxxxx');
+      john = null; //覆盖引用
+      console.log(map.keys()); // key的值还在
+    </script> -->
+    <script>
+      // WeakMap 的键必须是对象,不能是原始值
+      // WeakMap 的主要是优点是它们对对象是弱引用，被他们引用的对象很容易被垃圾回收，
+      // 它是弱的, 很容被清理
+      let john = { name: 'John' };
+      let weakMap = new WeakMap();
+      weakMap.set(john, 'xxxxx');
+      john = null; //覆盖引用
+      console.log(weakMap.has(john)); // 返回false,  因为应用被覆盖了
+    </script>
+  </body>
+</html>

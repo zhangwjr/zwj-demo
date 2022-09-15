@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>状态机</title>
+  </head>
+  <body>
+    <div>状态机</div>
+    <script type="module">
+      import { createMachine, interpret } from 'https://cdn.skypack.dev/xstate';
+
+      const toggleMachine = createMachine({
+        id: 'toggle',
+        initial: 'inactive',
+        states: {
+          inactive: { on: { TOGGLE: 'active' } },
+          active: { on: { TOGGLE: 'inactive' } },
+        },
+      });
+      console.log('toggleMachine', toggleMachine); // zwj-log
+      const toggleService = interpret(toggleMachine)
+        .onTransition((state) => console.log(state.value))
+        .start();
+      // => 'inactive'
+
+      toggleService.send('TOGGLE');
+      // => 'active'
+
+      toggleService.send('TOGGLE');
+      // => 'inactive'
+    </script>
+  </body>
+</html>
